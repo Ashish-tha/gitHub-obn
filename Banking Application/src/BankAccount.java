@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-public interface Bank {
+public interface BankAccount {
     int checkBalance(String var1);
 
     int deposit(int var1);

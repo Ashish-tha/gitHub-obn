@@ -5,7 +5,7 @@
 
 import java.util.UUID;
 
-public class Hdfc implements Bank {
+public class Hdfc implements BankAccount {
     private String password;
     private String holderName;
     private String accountNumber = String.valueOf(UUID.randomUUID());
