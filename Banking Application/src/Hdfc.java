@@ -1,70 +1,78 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 import java.util.UUID;
 
-public class Hdfc implements BankAccount {
-    private String password;
-    private String holderName;
-    private String accountNumber = String.valueOf(UUID.randomUUID());
-    private final double roi;
-    private int balance;
+public class Hdfc implements BankAccount{
 
-    Hdfc(String password, int balance, String holderName) {
-        this.password = password;
-        this.roi = (double)7.5F;
+    private String accountNo;
+    private String holderName;
+    private String password;
+    private int balance;
+    private final double rateOfInterest;
+
+    Hdfc(String holderName, String password, int balance) {
+        this.accountNo = String.valueOf(UUID.randomUUID());
         this.holderName = holderName;
+        this.password = password;
         this.balance = balance;
+        this.rateOfInterest = 6.1;
     }
 
     public String getHolderName() {
-        return this.holderName;
+        return holderName;
+    }
+
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public double getRateOfInterest() {
+        return rateOfInterest;
     }
 
     public void setHolderName(String holderName) {
         this.holderName = holderName;
     }
 
-    public String getAccountNumber() {
-        return this.accountNumber;
-    }
-
-    public double getRoi() {
-        return this.roi;
-    }
-
+    @Override
     public int checkBalance(String password) {
-        return this.password.equals(password) ? this.balance : -1;
+        if(this.password.equals(password)){
+            return this.balance;
+        }
+        return -1;
     }
 
+    @Override
     public int deposit(int amount) {
         this.balance += amount;
-        return this.balance;
+        return balance;
     }
 
+    @Override
     public void withdraw(int amount, String password) {
-        if (!this.password.equals(password)) {
-            System.out.println("wrong password");
-        } else if (amount > this.balance) {
-            System.out.println("Insuffcient Balance");
-        } else {
-            this.balance -= amount;
-            System.out.println("your final balance" + this.balance);
+        if(!this.password.equals(password)) {
+            System.out.println("Wrong password");
+            return;
         }
+        if(amount > this.balance) {
+            System.out.println("Insufficent balance");
+            return;
+        }
+        this.balance -= amount;
+        System.out.println("Your final balance = "+this.balance);
     }
 
-    public void passwordChange(String currPassword, String newPassword) {
-        if (!this.password.equals(currPassword)) {
-            System.out.println("Password is wrong");
+    @Override
+    public void changePassword(String currentPassword, String newPassword) {
+        if(!this.password.equals(currentPassword)) {
+            System.out.println("Current password is wrong");
+            return;
         }
 
         this.password = newPassword;
-        System.out.println("Pass change successfully");
+        System.out.println("Password changed succesfully");
     }
 
+    @Override
     public double calculateInterest(int years) {
-        return (double)this.balance * this.roi * (double)years / (double)100.0F;
+        return (this.balance*this.rateOfInterest*years)/100.0;
     }
 }

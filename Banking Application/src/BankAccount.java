@@ -1,16 +1,12 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 public interface BankAccount {
-    int checkBalance(String var1);
 
-    int deposit(int var1);
+    int checkBalance(String password);
 
-    void withdraw(int var1, String var2);
+    int deposit(int amount);
 
-    void passwordChange(String var1, String var2);
+    void withdraw(int amount, String password);
 
-    double calculateInterest(int var1);
+    void changePassword(String oldPassword, String newPassword);
+
+    double calculateInterest(int years);
 }

@@ -5,8 +5,8 @@
 
 public class Main {
     public static void main(String[] args) {
-        Hdfc AshishAccount = new Hdfc("abc", 1000, "Ashish Gaur");
-        System.out.println(AshishAccount.getAccountNumber());
+        Hdfc AshishAccount = new Hdfc("Ashish Gaur","abc",1000);
+        System.out.println(AshishAccount.getAccountNo());
         AshishAccount.deposit(1000);
         System.out.println(AshishAccount.checkBalance("xyz"));
         System.out.println(AshishAccount.checkBalance("abc"));
